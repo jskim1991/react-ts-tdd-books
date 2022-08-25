@@ -4,6 +4,8 @@ import { SpyStubBookRepository } from '../repository/SpyStubBookRepository'
 import * as router from 'react-router'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
+import { BookApiProvider } from '../BookApiContext'
+import { mockBookApiWith } from '../mockBookApiWith'
 
 describe('BookListPage Tests', () => {
     it('should fetch books from BookRepository', async () => {
@@ -56,9 +58,13 @@ describe('BookListPage Tests', () => {
 })
 
 const renderBookListPage = (spyStubBookRepository: SpyStubBookRepository) => {
+    mockBookApiWith(spyStubBookRepository)
+
     return render(
-        <MemoryRouter>
-            <BookListPage bookRepository={spyStubBookRepository} />
-        </MemoryRouter>
+        <BookApiProvider>
+            <MemoryRouter>
+                <BookListPage />
+            </MemoryRouter>
+        </BookApiProvider>
     )
 }

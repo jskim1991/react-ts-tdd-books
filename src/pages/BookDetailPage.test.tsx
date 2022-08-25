@@ -2,6 +2,7 @@ import { render, waitFor, screen } from '@testing-library/react'
 import { SpyStubBookRepository } from '../repository/SpyStubBookRepository'
 import BookDetailPage from './BookDetailPage'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
+import { mockBookApiWith } from '../mockBookApiWith'
 
 describe('BookDetailPage Tests', () => {
     it('should invoke book detail', async () => {
@@ -49,10 +50,12 @@ describe('BookDetailPage Tests', () => {
 })
 
 const renderBookDetailPage = (spyStubBookRepository: SpyStubBookRepository) => {
+    mockBookApiWith(spyStubBookRepository)
+
     return render(
         <MemoryRouter initialEntries={['/detail/999']}>
             <Routes>
-                <Route path="/detail/:isbn" element={<BookDetailPage bookRepository={spyStubBookRepository} />}></Route>
+                <Route path="/detail/:isbn" element={<BookDetailPage />}></Route>
             </Routes>
         </MemoryRouter>
     )
