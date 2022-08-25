@@ -1,4 +1,4 @@
-import { SpyStubNetwork } from './SpyStubNetwork'
+import { SpyStubNetwork } from './network/SpyStubNetwork'
 import { NetworkBookRepository } from './BookRepository'
 
 describe('Book Repository Tests', () => {

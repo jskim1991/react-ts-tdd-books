@@ -1,6 +1,5 @@
 import { Book } from '../domain/Book'
-import axios from 'axios'
-import { Network } from './Network'
+import { Network } from './network/Network'
 
 interface BookRepository {
     books(): Promise<Book[]>
