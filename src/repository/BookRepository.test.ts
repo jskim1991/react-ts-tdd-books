@@ -22,6 +22,7 @@ describe('Book Repository Tests', () => {
             const bookRepository = new NetworkBookRepository(spyStubNetwork)
 
             const books = await bookRepository.books()
+
             expect(books).toEqual([])
         })
 
@@ -33,10 +34,10 @@ describe('Book Repository Tests', () => {
                     author: 'Uncle Bob',
                 },
             ]
-
             const bookRepository = new NetworkBookRepository(spyStubNetwork)
 
             const books = await bookRepository.books()
+
             expect(books[0].isbn).toBe('1')
             expect(books[0].name).toBe('Clean Code')
             expect(books[0].author).toBe('Uncle Bob')
