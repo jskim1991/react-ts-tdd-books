@@ -12,7 +12,7 @@ describe('Network Tests', () => {
     })
 
     it('get() returns data of axios.get()', async () => {
-        const spyAxios = jest.spyOn(axios, 'get').mockResolvedValue({
+        jest.spyOn(axios, 'get').mockResolvedValue({
             data: 'return value',
         })
         const network = new APINetwork()
