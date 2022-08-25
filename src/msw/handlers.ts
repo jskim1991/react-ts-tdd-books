@@ -20,6 +20,31 @@ export const handlers = [
     }),
 
     rest.get('/api/books/1/detail', async (req, res, ctx) => {
-        return res(ctx.json(200), ctx.json({}))
+        return res(
+            ctx.json(200),
+            ctx.json({
+                isbn: '1',
+                name: 'The First Boook',
+                author: 'Sam Creator',
+                language: 'English',
+                pages: 352,
+                reviews: 4.5,
+                ebookLink: '/ebook/1',
+            })
+        )
+    }),
+
+    rest.get('/api/books/2/detail', async (req, res, ctx) => {
+        return res(
+            ctx.json(200),
+            ctx.json({
+                isbn: '2',
+                name: 'Greatest of All Time',
+                author: 'Mick John',
+                language: 'Korean',
+                pages: 998,
+                reviews: 0,
+            })
+        )
     }),
 ]
