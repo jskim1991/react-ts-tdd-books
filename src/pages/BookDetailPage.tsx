@@ -9,7 +9,7 @@ const BookDetailPage = () => {
     const [bookDetail, setBookDetail] = useState<BookDetail | undefined>(undefined)
 
     const fetchBook = async (isbn: string) => {
-        const bookDetailResponse = await bookApi.book(isbn)
+        const bookDetailResponse = await bookApi.bookRepository.book(isbn)
         setBookDetail(bookDetailResponse)
     }
 

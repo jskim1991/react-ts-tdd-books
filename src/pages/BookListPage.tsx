@@ -9,7 +9,7 @@ const BookListPage = () => {
     const [books, setBooks] = useState<Book[]>([])
 
     const fetchBooks = async () => {
-        const booksResponse = await bookApi.books()
+        const booksResponse = await bookApi.bookRepository.books()
         setBooks(booksResponse)
     }
 

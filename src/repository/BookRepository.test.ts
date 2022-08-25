@@ -8,7 +8,7 @@ describe('Book Repository Tests', () => {
     })
 
     describe('books() Tests', () => {
-        it('books() invokes Network get()', () => {
+        it('should invoke Network get()', () => {
             const bookRepository = new NetworkBookRepository(spyStubNetwork)
 
             bookRepository.books()
@@ -17,7 +17,7 @@ describe('Book Repository Tests', () => {
             expect(spyStubNetwork.get_url).toBe('/api/books')
         })
 
-        it('books() returns list of books', async () => {
+        it('should return list of books', async () => {
             spyStubNetwork.get_returnValue = [
                 {
                     isbn: '1',
@@ -36,7 +36,7 @@ describe('Book Repository Tests', () => {
     })
 
     describe('book() Tests', () => {
-        it('book() invokes Network get()', () => {
+        it('should invoke Network get()', () => {
             spyStubNetwork.get_returnValue = {}
             const bookRepository = new NetworkBookRepository(spyStubNetwork)
 
@@ -46,7 +46,7 @@ describe('Book Repository Tests', () => {
             expect(spyStubNetwork.get_url).toBe('/api/books/1999/detail')
         })
 
-        it('book() returns book detail', async () => {
+        it('should return book detail', async () => {
             spyStubNetwork.get_returnValue = {
                 isbn: '2',
                 name: 'Greatest of All Time',

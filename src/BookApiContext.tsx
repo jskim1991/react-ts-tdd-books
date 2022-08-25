@@ -1,18 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BookRepository, NetworkBookRepository } from './repository/BookRepository'
 import { APINetwork } from './repository/network/Network'
+import { NetworkTokenRepository, TokenRepository } from './repository/TokenRepository'
 
 interface Props {
     children?: React.ReactNode
 }
 
-export const BookApiContext = React.createContext<BookRepository | undefined>(undefined)
-
-export const BookApiProvider = ({ children }: Props) => {
-    return <BookApiContext.Provider value={new NetworkBookRepository(new APINetwork())}>{children}</BookApiContext.Provider>
+type ContextProps = {
+    bookRepository: BookRepository
+    tokenRepository: TokenRepository
 }
 
-export const useBookApi = (): BookRepository => {
+export const BookApiContext = React.createContext<ContextProps | undefined>(undefined)
+
+export const BookApiProvider = ({ children }: Props) => {
+    return (
+        <BookApiContext.Provider
+            value={{
+                bookRepository: new NetworkBookRepository(new APINetwork()),
+                tokenRepository: new NetworkTokenRepository(new APINetwork()),
+            }}
+        >
+            {children}
+        </BookApiContext.Provider>
+    )
+}
+
+export const useBookApi = (): ContextProps => {
     const context = React.useContext(BookApiContext)
     if (context === undefined) {
         throw new Error('useBookApi must be used within BookApiProvider')
