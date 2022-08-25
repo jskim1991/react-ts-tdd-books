@@ -1,8 +1,10 @@
 import { Book } from '../domain/Book'
 import { Network } from './network/Network'
+import { BookDetail } from '../domain/BookDetail'
 
-interface BookRepository {
+export interface BookRepository {
     books(): Promise<Book[]>
+    book(isbn: string): Promise<BookDetail>
 }
 
 export class NetworkBookRepository implements BookRepository {
@@ -22,5 +24,10 @@ export class NetworkBookRepository implements BookRepository {
                 author,
             }
         })
+    }
+
+    async book(isbn: string): Promise<BookDetail> {
+        const bookDetailResponse = await this.network.get<BookDetail>(`/api/books/${isbn}/detail`)
+        return bookDetailResponse
     }
 }

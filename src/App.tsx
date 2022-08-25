@@ -1,11 +1,17 @@
-import axios from 'axios'
-import { useEffect } from 'react'
+import BookListPage from './pages/BookListPage'
+import { APINetwork } from './repository/network/Network'
+import { NetworkBookRepository } from './repository/BookRepository'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import BookDetailPage from './pages/BookDetailPage'
 
 function App() {
     return (
-        <div className="App">
-            <h1>hi</h1>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<BookListPage bookRepository={new NetworkBookRepository(new APINetwork())} />} />
+                <Route path="/detail/:isbn" element={<BookDetailPage bookRepository={new NetworkBookRepository(new APINetwork())} />} />
+            </Routes>
+        </BrowserRouter>
     )
 }
 

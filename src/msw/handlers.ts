@@ -21,7 +21,7 @@ export const handlers = [
 
     rest.get('/api/books/1/detail', async (req, res, ctx) => {
         return res(
-            ctx.json(200),
+            ctx.status(200),
             ctx.json({
                 isbn: '1',
                 name: 'The First Boook',
@@ -36,7 +36,7 @@ export const handlers = [
 
     rest.get('/api/books/2/detail', async (req, res, ctx) => {
         return res(
-            ctx.json(200),
+            ctx.status(200),
             ctx.json({
                 isbn: '2',
                 name: 'Greatest of All Time',
