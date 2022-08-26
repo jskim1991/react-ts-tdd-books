@@ -1,4 +1,5 @@
 import { rest } from 'msw'
+import uuid4 from 'uuid4'
 
 export const handlers = [
     rest.get('/api/books', async (req, res, ctx) => {
@@ -44,6 +45,16 @@ export const handlers = [
                 language: 'Korean',
                 pages: 998,
                 reviews: 0,
+            })
+        )
+    }),
+
+    rest.get('/token', async (req, res, ctx) => {
+        return res(
+            ctx.status(200),
+            ctx.json({
+                accessToken: uuid4(),
+                expiresAt: 3600,
             })
         )
     }),
