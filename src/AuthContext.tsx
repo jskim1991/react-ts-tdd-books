@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Token } from './domain/Token'
-import { useBookApi } from './BookApiContext'
+import { useApi } from './ApiContext'
 
 interface Props {
     children?: React.ReactNode
@@ -16,10 +16,10 @@ export const AuthContext = React.createContext<ContextProps | undefined>(undefin
 export const AuthProvider = ({ children }: Props) => {
     const [auth, setAuth] = useState<Token | undefined>(undefined)
 
-    const bookApi = useBookApi()
+    const api = useApi()
 
     const fetchAccessToken = async () => {
-        const tokenResponse = await bookApi.tokenRepository.token()
+        const tokenResponse = await api.tokenRepository.token()
         const expireTime = new Date().getTime() + tokenResponse.expiresAt
         setAuth({
             accessToken: tokenResponse.accessToken,

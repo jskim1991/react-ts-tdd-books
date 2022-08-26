@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Book } from '../domain/Book'
 import { useNavigate } from 'react-router-dom'
-import { useBookApi } from '../BookApiContext'
+import { useApi } from '../ApiContext'
 
 const BookListPage = () => {
     const navigate = useNavigate()
-    const bookApi = useBookApi()
+    const api = useApi()
     const [books, setBooks] = useState<Book[]>([])
 
     const fetchBooks = async () => {
-        const booksResponse = await bookApi.bookRepository.books()
+        const booksResponse = await api.bookRepository.books()
         setBooks(booksResponse)
     }
 

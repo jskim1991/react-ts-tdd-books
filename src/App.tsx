@@ -1,12 +1,12 @@
 import BookListPage from './pages/BookListPage'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import BookDetailPage from './pages/BookDetailPage'
-import { BookApiProvider } from './BookApiContext'
+import { ApiProvider } from './ApiContext'
 import { AuthProvider } from './AuthContext'
 
 function App() {
     return (
-        <BookApiProvider>
+        <ApiProvider>
             <AuthProvider>
                 <BrowserRouter>
                     <Routes>
@@ -15,7 +15,7 @@ function App() {
                     </Routes>
                 </BrowserRouter>
             </AuthProvider>
-        </BookApiProvider>
+        </ApiProvider>
     )
 }
 

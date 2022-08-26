@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import App from './App'
 import { BookRepository } from './repository/BookRepository'
-import { mockBookApiWith } from './mockBookApiWith'
+import { mockApiWith } from './mockApiWith'
 import { SpyStubTokenRepository } from './repository/SpyStubTokenRepository'
 import { TokenRepository } from './repository/TokenRepository'
 import { SpyStubBookRepository } from './repository/SpyStubBookRepository'
@@ -45,6 +45,6 @@ describe('App Tests', () => {
 const renderApp = (bookRepository?: BookRepository, tokenRepository?: TokenRepository) => {
     bookRepository = bookRepository ?? new SpyStubBookRepository()
     tokenRepository = tokenRepository ?? new SpyStubTokenRepository()
-    mockBookApiWith(bookRepository, tokenRepository)
+    mockApiWith(bookRepository, tokenRepository)
     return render(<App />)
 }

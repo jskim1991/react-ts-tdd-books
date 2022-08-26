@@ -12,25 +12,25 @@ type ContextProps = {
     tokenRepository: TokenRepository
 }
 
-export const BookApiContext = React.createContext<ContextProps | undefined>(undefined)
+export const ApiContext = React.createContext<ContextProps | undefined>(undefined)
 
-export const BookApiProvider = ({ children }: Props) => {
+export const ApiProvider = ({ children }: Props) => {
     return (
-        <BookApiContext.Provider
+        <ApiContext.Provider
             value={{
                 bookRepository: new NetworkBookRepository(new APINetwork()),
                 tokenRepository: new NetworkTokenRepository(new APINetwork()),
             }}
         >
             {children}
-        </BookApiContext.Provider>
+        </ApiContext.Provider>
     )
 }
 
-export const useBookApi = (): ContextProps => {
-    const context = React.useContext(BookApiContext)
+export const useApi = (): ContextProps => {
+    const context = React.useContext(ApiContext)
     if (context === undefined) {
-        throw new Error('useBookApi must be used within BookApiProvider')
+        throw new Error('useApi must be used within ApiProvider')
     }
     return context
 }

@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react'
 import { SpyStubBookRepository } from '../repository/SpyStubBookRepository'
 import BookDetailPage from './BookDetailPage'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
-import { mockBookApiWith } from '../mockBookApiWith'
+import { mockApiWith } from '../mockApiWith'
 import { SpyStubTokenRepository } from '../repository/SpyStubTokenRepository'
 
 describe('BookDetailPage Tests', () => {
@@ -51,7 +51,7 @@ describe('BookDetailPage Tests', () => {
 })
 
 const renderBookDetailPage = (spyStubBookRepository: SpyStubBookRepository) => {
-    mockBookApiWith(spyStubBookRepository, new SpyStubTokenRepository())
+    mockApiWith(spyStubBookRepository, new SpyStubTokenRepository())
 
     return render(
         <MemoryRouter initialEntries={['/detail/999']}>
